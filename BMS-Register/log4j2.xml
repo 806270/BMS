@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Configuration packages="com.microsoft.applicationinsights.log4j.v2">
     <Properties>
-        <Property name="LOG_PATTERN">
-            [%-5level] %d{yyyy-MM-dd HH:mm:ss} ${hostname} [%t] %c{1} - %msg%n
-        </Property>
+        <Property name="LOG_PATTERN"> [%-5level] %d{yyyy-MM-dd HH:mm:ss} ${hostname} [%t] %c{1} - %msg%n </Property>
+        <Property name="basePath">./resources/logs</Property>
     </Properties>
     <Appenders>
     	 <!-- Rolling Console Appender -->
@@ -17,8 +16,8 @@
         </ApplicationInsightsAppender>
         
         <!-- Rolling File Appender -->
-			<RollingFile name="FileAppender" fileName="logs/bms.log"
-			             filePattern="logs/log4j2-demo-%d{yyyy-MM-dd}-%i.log">
+			<RollingFile name="FileAppender" fileName="${basePath}/logfile.log"
+			             filePattern="${basePath}/logfile-%d{yyyy-MM-dd}-%i.log">
 			    <PatternLayout>
 			        <Pattern>${LOG_PATTERN}</Pattern>
 			    </PatternLayout>
@@ -33,12 +32,16 @@
     <Loggers>
     
     	 <!-- specific to this application log -->
-        <Logger name="com.cts.bms" level="debug" additivity="false">
+        <Logger name="com.walmart.finance.dataservices.gis" level="debug" additivity="false">
             <AppenderRef ref="Console" />
             <AppenderRef ref="FileAppender"/> 
-        </Logger> 
+        </Logger>
 
-               
+        <Logger name="org.springframework.jdbc.core.JdbcTemplate" level="TRACE" additivity="false">
+            <Appender-Ref ref="Console" />
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+         
 		<!-- entire log -->
         <Root level="info">
             <AppenderRef ref="Console" /> 

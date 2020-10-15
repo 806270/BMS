@@ -23,7 +23,7 @@ public class WebLoanService {
 		  { 
 			  
 		   System.out.println("calling loan service:" +this.serviceUrl);			
-		  return restTemplate.getForObject("http://bmsregister/bmsloan/test", String.class); 
+		  return restTemplate.getForObject("http://bmsloan/bmsloan/test", String.class);  
 		   
 		  // return restTemplate.getForObject("http://localhost:3333/bmsloan/test", String.class);
 		   

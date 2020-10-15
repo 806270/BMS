@@ -1,5 +1,6 @@
 package com.cts.bms.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,8 +10,13 @@ import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity(name = "account")
-public class AccountRegistration {
+public class AccountRegistration implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L; 
+
 	@Id
     @Column(name = "username")
 	private String userName;
@@ -133,8 +139,15 @@ public class AccountRegistration {
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
 	}
+
+	@Override
+	public String toString() {
+		return "AccountRegistration [userName=" + userName + ", password=" + password + ", name=" + name + ", address="
+				+ address + ", state=" + state + ", country=" + country + ", email=" + email + ", pan=" + pan
+				+ ", phoneNo=" + phoneNo + ", dob=" + dob + ", accountType=" + accountType + "]";
+	}
 	
-	
+	 
 	
 	
 	
